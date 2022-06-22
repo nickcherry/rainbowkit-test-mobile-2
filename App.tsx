@@ -9,7 +9,7 @@ const App: FC = () => {
       <StatusBar style="auto" />
       <WebView
         source={{
-          uri: 'https://neon-griffin-f8c8b4.netlify.app',
+          uri: 'https://funny-bombolone-7101cc.netlify.app/',
         }}
       />
     </View>
