@@ -14,12 +14,13 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.farcaster.wagmitestandroid"
+      "bundleIdentifier": "com.farcaster.wagmitestandroid",
+      "infoPlist": {
+        "LSApplicationQueriesSchemes": ["rainbow", "metamask"]
+      }
     },
     "android": {
       "adaptiveIcon": {
