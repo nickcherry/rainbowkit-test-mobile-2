@@ -9,10 +9,10 @@ interface DeepLinkReplacement {
 }
 
 const deepLinkReplacements: DeepLinkReplacement[] = [
-  {
-    httpsHostAndProtocol: 'https://metamask.app.link/',
-    appScheme: 'metamask://',
-  },
+  // {
+  //   httpsHostAndProtocol: 'https://metamask.app.link/',
+  //   appScheme: 'metamask://',
+  // },
   // {
   //   httpsHostAndProtocol: 'https://rnbwapp.com/',
   //   appScheme: 'rainbow://',
