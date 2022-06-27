@@ -24,9 +24,24 @@ const App: FC = () => {
                     margin-bottom: 3rem;
                   }
                 </style>
-                <a href="https://rnbwapp.com/wc">Open Rainbow</a>
-                <a href="https://metamask.app.link">Open Metamask</a>
-                <a href="https://google.com">Open Google</a>
+                <a data-href="https://rnbwapp.com/wc">Open Rainbow</a>
+                <a data-href="https://metamask.app.link">Open Metamask</a>
+                <a data-href="https://google.com">Open Google</a>
+                <script>
+                  document.addEventListener('DOMContentLoaded', () => {
+                    document.querySelectorAll('a').forEach((link) => {
+                      link.addEventListener('click', (e) => {
+                        const url = e.target.dataset.href;
+
+                        // This works
+                        window.location.href = url;
+
+                        // This does not work
+                        // window.open(url, '_blank', 'noreferrer,noopener');
+                      })
+                    })
+                  });
+                </script>
               </body>
             </html>`,
         }}
