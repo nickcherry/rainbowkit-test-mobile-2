@@ -8,15 +8,9 @@ interface DeepLinkReplacement {
   appScheme: string;
 }
 
-const deepLinkReplacements: DeepLinkReplacement[] = [
-  // {
-  //   httpsHostAndProtocol: 'https://metamask.app.link/',
-  //   appScheme: 'metamask://',
-  // },
-  // {
-  //   httpsHostAndProtocol: 'https://rnbwapp.com/',
-  //   appScheme: 'rainbow://',
-  // },
+const walletDeepLinkHosts = [
+  'https://metamask.app.link',
+  'https://rnbwapp.com',
 ];
 
 const App: FC = () => {
@@ -28,22 +22,11 @@ const App: FC = () => {
           uri: 'https://funny-bombolone-7101cc.netlify.app/',
         }}
         onShouldStartLoadWithRequest={(event) => {
-          console.log(event);
-          const deepLinkReplacement = deepLinkReplacements.find(
-            ({ httpsHostAndProtocol }) =>
-              event.url.startsWith(httpsHostAndProtocol),
-          );
-
-          if (deepLinkReplacement) {
-            const targetUrl = decodeURIComponent(
-              event.url.replace(
-                deepLinkReplacement.httpsHostAndProtocol,
-                deepLinkReplacement.appScheme,
-              ),
-            );
-            console.log(`\nattempting to open ${targetUrl}\n`);
-            Linking.openURL(targetUrl);
-            return false;
+          for (const walletDeepLinkHost of walletDeepLinkHosts) {
+            if (event.url.startsWith(walletDeepLinkHost)) {
+              Linking.openURL(event.url);
+              return false;
+            }
           }
 
           return true;
