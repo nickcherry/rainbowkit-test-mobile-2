@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
+import { Button, Linking, StyleSheet, View } from 'react-native';
 import { WebView } from 'react-native-webview';
 
 const App: FC = () => {
@@ -8,8 +8,35 @@ const App: FC = () => {
     <View style={styles.container}>
       <StatusBar style="auto" />
       <WebView
+        onShouldStartLoadWithRequest={(event) => {
+          if (event.url === 'about:blank') {
+            return true;
+          }
+
+          Linking.openURL(event.url);
+          return false;
+        }}
         source={{
-          uri: 'https://funny-bombolone-7101cc.netlify.app/',
+          html: `
+            <html>
+              <body>
+                <style>
+                  body {
+                    align-items: center;
+                    display: flex;
+                    flex-direction: column;
+                    font-size: 64px;
+                    justify-content: center;
+                  }
+                  a {
+                    margin-bottom: 3rem;
+                  }
+                </style>
+                <a href="https://rnbwapp.com/wc">Open Rainbow</a>
+                <a href="https://metamask.app.link">Open Metamask</a>
+                <a href="https://google.com">Open Google</a>
+              </body>
+            </html>`,
         }}
       />
     </View>
