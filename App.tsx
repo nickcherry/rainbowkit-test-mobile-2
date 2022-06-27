@@ -1,7 +1,12 @@
 import React, { FC } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
+import { Linking, StyleSheet, View } from 'react-native';
 import { WebView } from 'react-native-webview';
+
+const walletUniversalLinkHosts = [
+  'https://metamask.app.link',
+  'https://rnbwapp.com',
+];
 
 const App: FC = () => {
   return (
@@ -10,6 +15,16 @@ const App: FC = () => {
       <WebView
         source={{
           uri: 'https://funny-bombolone-7101cc.netlify.app/',
+        }}
+        onShouldStartLoadWithRequest={(event) => {
+          for (const walletUniversalLinkHost of walletUniversalLinkHosts) {
+            if (event.url.startsWith(walletUniversalLinkHost)) {
+              Linking.openURL(event.url);
+              return false;
+            }
+          }
+
+          return true;
         }}
       />
     </View>
