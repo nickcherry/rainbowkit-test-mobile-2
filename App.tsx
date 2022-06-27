@@ -3,12 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Linking, StyleSheet, View } from 'react-native';
 import { WebView } from 'react-native-webview';
 
-interface DeepLinkReplacement {
-  httpsHostAndProtocol: string;
-  appScheme: string;
-}
-
-const walletDeepLinkHosts = [
+const walletUniversalLinkHosts = [
   'https://metamask.app.link',
   'https://rnbwapp.com',
 ];
@@ -22,8 +17,8 @@ const App: FC = () => {
           uri: 'https://funny-bombolone-7101cc.netlify.app/',
         }}
         onShouldStartLoadWithRequest={(event) => {
-          for (const walletDeepLinkHost of walletDeepLinkHosts) {
-            if (event.url.startsWith(walletDeepLinkHost)) {
+          for (const walletUniversalLinkHost of walletUniversalLinkHosts) {
+            if (event.url.startsWith(walletUniversalLinkHost)) {
               Linking.openURL(event.url);
               return false;
             }
