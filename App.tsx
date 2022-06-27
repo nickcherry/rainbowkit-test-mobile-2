@@ -8,14 +8,6 @@ const App: FC = () => {
     <View style={styles.container}>
       <StatusBar style="auto" />
       <WebView
-        onShouldStartLoadWithRequest={(event) => {
-          if (event.url === 'about:blank') {
-            return true;
-          }
-
-          Linking.openURL(event.url);
-          return false;
-        }}
         source={{
           html: `
             <html>
